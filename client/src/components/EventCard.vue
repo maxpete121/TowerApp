@@ -25,7 +25,7 @@
     setup(props) {
         let date = props.event.startDate.toLocaleDateString()
         let time = props.event.startDate.toLocaleTimeString()
-        let hours = time.slice(0,5)
+        let hours = time.slice(0,4)
         let amPm = time.slice(7,11)
       return {
         styleB: `background-image: url(${props.event.coverImg}); background-position: center; background-size: cover;`,
