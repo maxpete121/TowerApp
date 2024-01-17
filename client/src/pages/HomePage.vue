@@ -1,14 +1,14 @@
 <template>
   <section class="container-fluid section-main">
     <section class="row justify-content-center p-2">
-      <div class="col-9 heading p-2 align-items-center justify-content-center justify-content-md-start d-flex">
+      <div class="col-10 heading p-2 align-items-center justify-content-center justify-content-lg-start d-flex">
         <div class="heading-child w-50 p-2">
           <h5 class="ms-2">Find an event for you!</h5>
           <h5 class="ms-2">Save events for later!</h5>
         </div>
       </div>
     </section>
-    <section class="row justify-content-center mt-2">
+    <section class="row justify-content-center mt-4">
       <div class="col-6 filter d-flex justify-content-center">
         <button class="ms-2 me-2 btn btn-outline-light">All</button>
         <button class="ms-2 me-2 btn btn-outline-light">Concert</button>
@@ -17,10 +17,10 @@
         <button class="ms-2 me-2 btn btn-outline-light">Digital</button>
       </div>
     </section>
-    <section class="row">
-      <div class="col-3 m-1" v-for="event in events">
-        <EventCard :event="event"/>
-      </div>
+    <section class="row mt-4 justify-content-center">
+        <div class="col-7 col-lg-2 m-2" v-for="event in events">
+          <EventCard :event="event"/>
+        </div>
     </section>
   </section>
 </template>
@@ -30,6 +30,7 @@ import { computed, onMounted } from 'vue';
 import {eventService} from '../services/EventService.js'
 import { AppState } from '../AppState';
 import EventCard from '../components/EventCard.vue';
+import { RouterLink } from 'vue-router';
 
 export default {
   setup() {
@@ -42,7 +43,7 @@ export default {
     return {
       events: computed(()=> AppState.events)
     }
-  }, components: {EventCard}
+  }, components: {EventCard, RouterLink}
 }
 </script>
 

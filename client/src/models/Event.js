@@ -15,6 +15,7 @@ export class Event{
         this.creatorId = data.creatorId
         this.creator = data.creator
         this.ticketCount = data.ticketCount
+        this.id = data._id
     }
 }
 

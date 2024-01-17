@@ -12,7 +12,8 @@ class EventService{
         return newEvent
     }
     async getEvents(){
-        let events = await dbContext.Events.find()
+        let events = await dbContext.Events.find().populate('creator', 'name picture').populate('ticketCount')
+        
         return events
     }
 
