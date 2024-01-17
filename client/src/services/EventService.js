@@ -17,6 +17,12 @@ class EventService{
         console.log(newEvent)
         AppState.activeEvent = newEvent
     }
+
+    async getEventByQuery(query){
+        let response = await api.get(`api/events/type/${query}`)
+        let allEvents = response.data.map(events => new Event(events))
+        AppState.events = allEvents
+    }
 }
 
 export const eventService = new EventService()

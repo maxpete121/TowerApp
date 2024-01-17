@@ -5,6 +5,12 @@
         <h2 class="d-flex align-items-center"><h2>🦒</h2>Tower</h2>
       </div>
     </router-link>
+    <div class="d-flex flex-column align-items-center text-danger me-4 ms-4">
+      <h5>Create Event</h5>
+    </div>
+    <div class="d-flex flex-column align-items-center text-danger">
+      <h5>Your Events</h5>
+    </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

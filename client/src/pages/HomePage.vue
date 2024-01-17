@@ -10,15 +10,15 @@
     </section>
     <section class="row justify-content-center mt-4">
       <div class="col-6 filter d-flex justify-content-center">
-        <button class="ms-2 me-2 btn btn-outline-light">All</button>
-        <button class="ms-2 me-2 btn btn-outline-light">Concert</button>
-        <button class="ms-2 me-2 btn btn-outline-light">Convention</button>
-        <button class="ms-2 me-2 btn btn-outline-light">Sport</button>
-        <button class="ms-2 me-2 btn btn-outline-light">Digital</button>
+        <button @click="getEventByQuery('')" class="ms-2 me-2 btn btn-outline-light">All</button>
+        <button @click="getEventByQuery('concert')" class="ms-2 me-2 btn btn-outline-light">Concert</button>
+        <button @click="getEventByQuery('convention')"  class="ms-2 me-2 btn btn-outline-light">Convention</button>
+        <button @click="getEventByQuery('sport')" class="ms-2 me-2 btn btn-outline-light">Sport</button>
+        <button @click="getEventByQuery('digital')" class="ms-2 me-2 btn btn-outline-light">Digital</button>
       </div>
     </section>
     <section class="row mt-4 justify-content-center">
-        <div class="col-7 col-lg-2 m-2" v-for="event in events">
+        <div class="col-7 col-lg-3 m-2" v-for="event in events">
           <EventCard :event="event"/>
         </div>
     </section>
@@ -26,7 +26,7 @@
 </template>
 <!-- 'concert', 'convention', 'sport', 'digital' -->
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import {eventService} from '../services/EventService.js'
 import { AppState } from '../AppState';
 import EventCard from '../components/EventCard.vue';
@@ -40,8 +40,17 @@ export default {
     async function getEvents(){
       await eventService.getEvents()
     }
+
+    async function getEventByQuery(query){
+      if(query != ''){
+        await eventService.getEventByQuery(query)
+      }else{
+        getEvents()
+      }
+    }
     return {
-      events: computed(()=> AppState.events)
+      events: computed(()=> AppState.events),
+      getEventByQuery
     }
   }, components: {EventCard, RouterLink}
 }

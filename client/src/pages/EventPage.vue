@@ -14,10 +14,19 @@
                 <span class="text-light">
                     <p>{{ events.description }}</p>
                 </span>
+                <div class="d-flex justify-content-between">
+                    <span class="d-flex text-light">
+                        <h5 class="me-2">Spots Left:</h5>
+                        <h5>{{ events.spotsLeft }}</h5>
+                    </span>
+                    <span>
+                        <button class="btn btn-outline-light">Get Ticket 🎟</button>
+                    </span>
+                </div>
             </div>
         </section>
         <section class="row">
-            <div class="col-9 bg-dark">
+            <div class="col-9 bg-dark text-light">
                 <h6>See who's attending</h6>
             </div>
         </section>
@@ -29,6 +38,7 @@ import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState';
 import { eventService } from '../services/EventService.js'
 import { useRoute } from 'vue-router';
+import {ticketService} from '../services/TicketService.js'
 export default {
     setup() {
         onMounted(() => {
@@ -38,6 +48,12 @@ export default {
         async function findEventId() {
             let eventId = route.params.eventId
             await eventService.findEventId(eventId)
+            await getEventTickets(eventId)
+        }
+
+        async function getEventTickets(){
+            let eventId = route.params.eventId
+            await ticketService.getEventTickets(eventId)
         }
         return {
             events: computed(() => AppState.activeEvent),

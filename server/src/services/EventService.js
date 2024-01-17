@@ -13,7 +13,6 @@ class EventService{
     }
     async getEvents(){
         let events = await dbContext.Events.find().populate('creator', 'name picture').populate('ticketCount')
-        
         return events
     }
 
@@ -39,6 +38,11 @@ class EventService{
         let event = await dbContext.Events.findById(eventId)
         event.isCanceled = true
         await event.save()
+        return event
+    }
+
+    async getEventByQuery(query){
+        let event = await dbContext.Events.find({type: query}).populate('creator', 'name picture').populate('ticketCount')
         return event
     }
 }

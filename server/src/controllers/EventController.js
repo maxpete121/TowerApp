@@ -13,6 +13,7 @@ export class EventController extends BaseController{
         .get('', this.getEvents)
         .get('/:eventId', this.getEventById)
         .get('/:eventId/tickets', this.getEventTickets)
+        .get('/type/:query', this.getEventByQuery)
         .use(Auth0Provider.getAuthorizedUserInfo)
         .post('', this.postEvent)
         .put('/:eventId', this.editEvent)
@@ -75,6 +76,16 @@ export class EventController extends BaseController{
             let eventId = request.params.eventId
             let tickets = await ticketService.getEventTickets(eventId)
             response.send(tickets)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async getEventByQuery(request, response, next){
+        try {
+            let query = request.params.query
+            let events = await eventService.getEventByQuery(query)
+            response.send(events)
         } catch (error) {
             next(error)
         }
