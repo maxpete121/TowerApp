@@ -15,6 +15,11 @@ class EventService{
         let events = await dbContext.Events.find()
         return events
     }
+
+    async getEventById(eventId){
+        let event = await dbContext.Events.findById(eventId)
+        return event
+    }
 }
 
 export const eventService = new EventService()
