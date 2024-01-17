@@ -4,7 +4,11 @@
             <div class="event-child">
                 <h5>{{ event.name }}</h5>
                 <h6>{{ event.location }}</h6>
-                <h6>{{ event.startDate }}</h6>
+                <span class="d-flex">
+                    <h6 class="me-2">{{ date }}</h6>
+                    <h6>{{ hours }}</h6>
+                    <h6>{{ amPm }}</h6>
+                </span>
             </div>
         </div>
     </router-link>
@@ -19,9 +23,15 @@
   export default {
     props: {event: {type: Event, required: true}},
     setup(props) {
-        
+        let date = props.event.startDate.toLocaleDateString()
+        let time = props.event.startDate.toLocaleTimeString()
+        let hours = time.slice(0,5)
+        let amPm = time.slice(7,11)
       return {
-        styleB: `background-image: url(${props.event.coverImg}); background-position: center; background-size: cover;`
+        styleB: `background-image: url(${props.event.coverImg}); background-position: center; background-size: cover;`,
+        date,
+        hours,
+        amPm
       }
     }, components: {RouterLink}
   }
