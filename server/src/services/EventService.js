@@ -8,7 +8,7 @@ class EventService{
 
     async postEvent(eventData){
         let newEvent = await dbContext.Events.create(eventData)
-        await newEvent.populate('creator ticket')
+        await newEvent.populate('creator ticketCount')
         return newEvent
     }
     async getEvents(){
@@ -30,7 +30,6 @@ class EventService{
         eventEdit.capacity = newData.capacity != undefined ? newData.capacity : eventEdit.capacity
         eventEdit.startDate = newData.startDate != undefined ? newData.startDate : eventEdit.startDate
         eventEdit.type = newData.type != undefined ? newData.type : eventEdit.type
-        eventEdit.ticketCount = newData.ticketCount != undefined ? newData.ticketCount : eventEdit.ticketCount
         await eventEdit.save()
         return eventEdit
     }
