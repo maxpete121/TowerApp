@@ -10,9 +10,10 @@ export class EventController extends BaseController{
         super('api/events')
         this.router
         .get('', this.getEvents)
-        .use(Auth0Provider.getAuthorizedUserInfo)
         .get('/:eventId', this.getEventById)
+        .use(Auth0Provider.getAuthorizedUserInfo)
         .post('', this.postEvent)
+        .put('/:eventId', this.editEvent)
     }
 
     async postEvent(request, response, next){
@@ -40,6 +41,17 @@ export class EventController extends BaseController{
             let eventId = request.params.eventId
             let event = await eventService.getEventById(eventId)
             response.send(event)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async editEvent(request, response, next){
+        try {
+            let newData = request.body
+            let eventId = request.params.eventId
+            let newEvent = await eventService.editEvent(newData, eventId)
+            response.send(newEvent)
         } catch (error) {
             next(error)
         }
