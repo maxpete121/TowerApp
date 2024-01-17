@@ -34,6 +34,13 @@ class EventService{
         await eventEdit.save()
         return eventEdit
     }
+
+    async cancelEvent(eventId){
+        let event = await dbContext.Events.findById(eventId)
+        event.isCanceled = true
+        await event.save()
+        return event
+    }
 }
 
 export const eventService = new EventService()

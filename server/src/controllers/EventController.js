@@ -14,6 +14,7 @@ export class EventController extends BaseController{
         .use(Auth0Provider.getAuthorizedUserInfo)
         .post('', this.postEvent)
         .put('/:eventId', this.editEvent)
+        .delete('/:eventId', this.cancelEvent)
     }
 
     async postEvent(request, response, next){
@@ -52,6 +53,16 @@ export class EventController extends BaseController{
             let eventId = request.params.eventId
             let newEvent = await eventService.editEvent(newData, eventId)
             response.send(newEvent)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async cancelEvent(request, response, next){
+        try {
+            let eventId = request.params.eventId
+            let event = await eventService.cancelEvent(eventId)
+            response.send(event)      
         } catch (error) {
             next(error)
         }
