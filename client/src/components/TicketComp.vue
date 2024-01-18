@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-column align-items-center">
         <img class="rounded-circle profile-pic" :src="ticket.profile.picture" alt="">
-        <p>{{ ticket.profile.name }}</p>
+        <p class="profile-name">{{ ticket.profile.name }}</p>
     </div>
 </template>
   
@@ -24,5 +24,9 @@ export default {
 .profile-pic{
     height: 50px;
     width: 50px;
+}
+
+.profile-name{
+    font-size: smaller;
 }
 </style>

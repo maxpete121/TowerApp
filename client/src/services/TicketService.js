@@ -20,7 +20,6 @@ class TicketService{
         let response = await api.post('api/tickets', temp)
         let ticket = new Ticket(response.data)
         AppState.tickets.unshift(ticket)
-        console.log(ticket)
     }
 }
 

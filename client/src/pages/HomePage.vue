@@ -9,7 +9,7 @@
       </div>
     </section>
     <section class="row justify-content-center mt-4">
-      <div class="col-6 filter d-flex justify-content-center">
+      <div class="col-11 col-lg-6 filter d-flex justify-content-center">
         <button @click="getEventByQuery('')" class="ms-2 me-2 btn btn-outline-light">All</button>
         <button @click="getEventByQuery('concert')" class="ms-2 me-2 btn btn-outline-light">Concert</button>
         <button @click="getEventByQuery('convention')"  class="ms-2 me-2 btn btn-outline-light">Convention</button>

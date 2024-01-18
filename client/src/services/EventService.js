@@ -25,11 +25,15 @@ class EventService{
     }
 
     async postEvent(eventData){
-        console.log(eventData)
         let response = await api.post('api/events', eventData)
         let newEvent = new Event(response.data)
         AppState.events.push(newEvent)
         return newEvent
+    }
+
+    async cancelEvent(eventId){
+        let response = await api.delete(`api/events/${eventId}`)
+        AppState.activeEvent.isCanceled = true
     }
 }
 
