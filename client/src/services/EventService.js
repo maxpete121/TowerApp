@@ -23,6 +23,14 @@ class EventService{
         let allEvents = response.data.map(events => new Event(events))
         AppState.events = allEvents
     }
+
+    async postEvent(eventData){
+        console.log(eventData)
+        let response = await api.post('api/events', eventData)
+        let newEvent = new Event(response.data)
+        AppState.events.push(newEvent)
+        return newEvent
+    }
 }
 
 export const eventService = new EventService()

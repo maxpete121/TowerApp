@@ -2,7 +2,7 @@
     <router-link :to="{ name: 'Event', params: { eventId: event.id } }">
         <div class="event-card d-flex flex-column justify-content-between">
             <img class="img-fluid" :src="event.coverImg" alt="">
-            <div class="event-child text-light">
+            <div v-if="event.isCanceled == false" class="event-child text-light">
                 <h5>{{ event.name }}</h5>
                 <h6>{{ event.location }}</h6>
                 <span class="d-flex">
@@ -10,6 +10,10 @@
                     <h6>{{ hours }}</h6>
                     <h6>{{ amPm }}</h6>
                 </span>
+            </div>
+            <div v-if="event.isCanceled == true" class="event-child-two text-light">
+                <h6>{{ event.name }}</h6>
+                <h5>Canceled❌</h5>
             </div>
         </div>
     </router-link>
@@ -57,6 +61,11 @@ export default {
 
 .event-child {
     background-color: rgba(0, 0, 0, 0.747);
+    padding: 6px;
+
+}
+.event-child-two {
+    background-color: rgba(150, 0, 0, 0.747);
     padding: 6px;
 
 }
