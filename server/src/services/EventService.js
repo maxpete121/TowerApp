@@ -35,15 +35,19 @@ class EventService{
             await eventEdit.save()
             return eventEdit
         }else{
-            throw new Forbidden('NOT ERROR')
+            throw new Forbidden('NOT Authorized')
         }
     }
 
-    async cancelEvent(eventId){
+    async cancelEvent(eventId, userId){
         let event = await dbContext.Events.findById(eventId)
-        event.isCanceled = true
-        await event.save()
-        return event
+        if(event.creatorId == userId){
+            event.isCanceled = true
+            await event.save()
+            return event
+        }else{
+            throw new Forbidden('NOT Authorized') 
+        }
     }
 
     async getEventByQuery(query){
