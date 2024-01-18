@@ -35,6 +35,12 @@ class TicketService{
         })
         return foundTickets
     }
+
+    async deleteTicket(ticketId){
+        let foundTicket = await (await dbContext.Tickets.findById(ticketId)).populate('profile')
+        await foundTicket.deleteOne()
+        return 'Ticket deleted'
+    }
 }
 
 export const ticketService = new TicketService()

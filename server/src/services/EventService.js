@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext.js"
+import { Forbidden } from "../utils/Errors.js"
 
 
 
@@ -21,17 +22,21 @@ class EventService{
         return event
     }
 
-    async editEvent(newData, eventId){
+    async editEvent(newData, eventId, userId){
         let eventEdit = await dbContext.Events.findById(eventId)
-        eventEdit.name = newData.name != undefined ? newData.name : eventEdit.name
-        eventEdit.description = newData.description != undefined ? newData.description : eventEdit.description
-        eventEdit.coverImg = newData.coverImg != undefined ? newData.coverImg : eventEdit.coverImg
-        eventEdit.location = newData.location != undefined ? newData.location : eventEdit.location
-        eventEdit.capacity = newData.capacity != undefined ? newData.capacity : eventEdit.capacity
-        eventEdit.startDate = newData.startDate != undefined ? newData.startDate : eventEdit.startDate
-        eventEdit.type = newData.type != undefined ? newData.type : eventEdit.type
-        await eventEdit.save()
-        return eventEdit
+        if(eventEdit.creatorId == userId){
+            eventEdit.name = newData.name != undefined ? newData.name : eventEdit.name
+            eventEdit.description = newData.description != undefined ? newData.description : eventEdit.description
+            eventEdit.coverImg = newData.coverImg != undefined ? newData.coverImg : eventEdit.coverImg
+            eventEdit.location = newData.location != undefined ? newData.location : eventEdit.location
+            eventEdit.capacity = newData.capacity != undefined ? newData.capacity : eventEdit.capacity
+            eventEdit.startDate = newData.startDate != undefined ? newData.startDate : eventEdit.startDate
+            eventEdit.type = newData.type != undefined ? newData.type : eventEdit.type
+            await eventEdit.save()
+            return eventEdit
+        }else{
+            throw new Forbidden('NOT ERROR')
+        }
     }
 
     async cancelEvent(eventId){
