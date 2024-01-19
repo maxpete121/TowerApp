@@ -16,7 +16,7 @@
                     <p>{{ events.description }}</p>
                 </span>
                 <div></div>
-                <div class="d-flex justify-content-between">
+                <div class="d-lg-flex justify-content-between">
                     <span v-if="events.spotsLeft > 0" class="d-flex text-light">
                         <h5 class="me-2">Spots Left:</h5>
                         <h5>{{ events.spotsLeft }}</h5>
@@ -32,6 +32,7 @@
                         <button v-if="events.creatorId == account.id && events.isCanceled == false" @click="cancelEvent(events.id)" class="btn btn-outline-danger ms-2">Cancel❌</button>
                     </span>
                 </div>
+                <h6 v-if="hasTicket" class="text-light">You have a ticket for this event✅</h6>
             </div>
         </section>
         <div class="row justify-content-center mt-3">
@@ -79,8 +80,7 @@ export default {
     
     setup() {
         const newComment = ref({})
-        let eventIdVal = computed(()=> AppState.activeEvent?.startDate)
-        const timeStamp = ref('')
+        let eventIdVal = computed(()=> AppState.activeEvent)
         
         onMounted(() => {
             findEventId()
@@ -129,7 +129,11 @@ export default {
             newComment,
             postTicket,
             cancelEvent,
-            postComment
+            postComment,
+            hasTicket: computed(()=>{
+                const account = AppState.tickets.find(ticket => ticket.accountId == AppState.account.id)
+                return account != undefined
+            }),
         }
     }, components: {TicketComp, CommentCard}
 }

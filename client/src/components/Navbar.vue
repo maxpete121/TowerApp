@@ -2,17 +2,17 @@
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h2 class="d-flex"><h2>🦒</h2>Tower</h2>
+        <h3 class="d-flex"><h2>🦒</h2>Tower</h3>
       </div>
     </router-link>
     <router-link class="navbar-brand d-flex" v-if="account.id" :to="{ name: 'Create' }">
       <div class="d-flex flex-column align-items-center text-danger me-4 ms-4">
-        <h5 class="d-flex align-items-center">Create Event</h5>
+        <h6 class="d-flex align-items-center">Create Event</h6>
       </div>
     </router-link>
     <router-link class="navbar-brand d-flex" v-if="account.id" :to="{ name: 'Profile', params: {profileId: account.id} }">
       <div class="d-flex flex-column align-items-center text-danger">
-        <h5 class="d-flex align-items-center">Your Profile</h5>
+        <h6 class="d-flex align-items-center">Your Profile</h6>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
