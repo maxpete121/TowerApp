@@ -78,6 +78,7 @@ export default {
     setup() {
         const newComment = ref({})
         let eventIdVal = computed(()=> AppState.activeEvent)
+        
         onMounted(() => {
             findEventId()
         })

@@ -5,27 +5,27 @@
         </div>
         <form @submit.prevent="postEvent()" class="mt-2" action="">
             <div class="row justify-content-center">
-                <div class="col-3 d-flex flex-column">
+                <div class="col-lg-3 col-10 d-flex flex-column">
                     <label for="event-name">Event Name...</label>
                     <input required v-model="newEvent.name" class="form-control" name="event-name" type="text">
                 </div>
-                <div class="col-3 d-flex flex-column">
+                <div class="col-lg-3 col-10 d-flex flex-column">
                     <label for="eventDate">Event Date and Time...</label>
                     <input required v-model="newEvent.startDate" class="form-control" name="eventDate" type="datetime-local">
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-3 d-flex flex-column">
+                <div class="col-lg-3 col-10 d-flex flex-column">
                     <label for="location">Location...</label>
                     <input required v-model="newEvent.location" class="form-control" name="location" type="text">
                 </div>
-                <div class="col-3 d-flex flex-column">
+                <div class="col-lg-3 col-10 d-flex flex-column">
                     <label for="coverImg">Image...</label>
                     <input required v-model="newEvent.coverImg" class="form-control" name="coverImg" type="url">
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-3 d-flex flex-column">
+                <div class="col-lg-3 col-10 d-flex flex-column">
                     <label for="type">Type...</label>
                     <select required v-model="newEvent.type" class="form-control">
                         <option disabled selected value="concert">Choose Type</option>
@@ -35,7 +35,7 @@
                         <option value="digital">Digital</option>
                     </select>
                 </div>
-                <div class="col-3 d-flex flex-column">
+                <div class="col-lg-3 col-10 d-flex flex-column">
                     <span class="d-flex">
                         <label for="capacity">Capacity...</label>
                         <p class="ms-2">{{ newEvent.capacity }}</p>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-6 d-flex flex-column">
+                <div class="col-lg-6 col-10 d-flex flex-column">
                     <label for="description">Description...</label>
                     <textarea v-model="newEvent.description" class="form-control" name="description" id="" cols="80" rows="6"></textarea>
                 </div>

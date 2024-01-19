@@ -24,7 +24,7 @@ class EventService{
 
     async editEvent(newData, eventId, userId){
         let eventEdit = await dbContext.Events.findById(eventId)
-        if(eventEdit.creatorId == userId){
+        if(eventEdit.creatorId == userId && eventEdit.isCanceled == false){
             eventEdit.name = newData.name != undefined ? newData.name : eventEdit.name
             eventEdit.description = newData.description != undefined ? newData.description : eventEdit.description
             eventEdit.coverImg = newData.coverImg != undefined ? newData.coverImg : eventEdit.coverImg
@@ -35,7 +35,7 @@ class EventService{
             await eventEdit.save()
             return eventEdit
         }else{
-            throw new Forbidden('NOT Authorized')
+            throw new Error
         }
     }
 

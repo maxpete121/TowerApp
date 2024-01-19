@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext.js"
+import { Forbidden } from "../utils/Errors.js"
 
 
 
@@ -36,10 +37,14 @@ class TicketService{
         return foundTickets
     }
 
-    async deleteTicket(ticketId){
+    async deleteTicket(ticketId, userId){
         let foundTicket = await (await dbContext.Tickets.findById(ticketId)).populate('profile')
-        await foundTicket.deleteOne()
-        return 'Ticket deleted'
+        if(foundTicket.accountId == userId){
+            await foundTicket.deleteOne()
+            return 'Ticket deleted'
+        }else{
+            throw new Forbidden('NOT Authorized')
+        }
     }
 }
 
