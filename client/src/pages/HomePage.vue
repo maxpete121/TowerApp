@@ -1,21 +1,20 @@
 <template>
   <section class="container-fluid section-main">
     <section class="row justify-content-center p-2">
-      <div class="col-10 heading p-2 align-items-center justify-content-center justify-content-lg-start d-flex">
+      <div class="col-11 col-lg-9 heading p-2 align-items-center justify-content-center justify-content-lg-start d-flex">
         <div class="heading-child w-50 p-2">
-          <h5 class="ms-2">Find an event for you!</h5>
           <h5 class="ms-2">Get tickets fast and easy!</h5>
           <h5 class="ms-2">Endless opportunities for fun and learning!</h5>
         </div>
       </div>
     </section>
     <section class="row justify-content-center mt-4">
-      <div class="col-11 col-lg-6 filter d-flex justify-content-center">
-        <button @click="getEventByQuery('')" class="ms-2 me-2 btn btn-outline-light">All</button>
-        <button @click="getEventByQuery('concert')" class="ms-2 me-2 btn btn-outline-light">Concert</button>
-        <button @click="getEventByQuery('convention')"  class="ms-2 me-2 btn btn-outline-light">Convention</button>
-        <button @click="getEventByQuery('sport')" class="ms-2 me-2 btn btn-outline-light">Sport</button>
-        <button @click="getEventByQuery('digital')" class="ms-2 me-2 btn btn-outline-light">Digital</button>
+      <div class="col-12 col-lg-6 filter d-flex justify-content-center">
+        <button @click="getEventByQuery('')" class="ms-lg-2 me-lg-2 btn btn-outline-light">All</button>
+        <button @click="getEventByQuery('concert')" class="ms-lg-2 me-lg-2 btn btn-outline-light">Concert</button>
+        <button @click="getEventByQuery('convention')"  class="ms-lg-2 me-lg-2 btn btn-outline-light">Convention</button>
+        <button @click="getEventByQuery('sport')" class="ms-lg-2 me-lg-2 btn btn-outline-light">Sport</button>
+        <button @click="getEventByQuery('digital')" class="ms-lg-2 me-lg-2 btn btn-outline-light">Digital</button>
       </div>
     </section>
     <section class="row mt-4 justify-content-center">

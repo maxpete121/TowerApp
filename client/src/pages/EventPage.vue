@@ -9,11 +9,13 @@
                     <span>
                         <h4>{{ events.name }}</h4>
                         <h5>{{ events.location }}</h5>
+                        <h5>{{ events.startDate }}</h5>
                     </span>
                 </div>
                 <span class="text-light">
                     <p>{{ events.description }}</p>
                 </span>
+                <div></div>
                 <div class="d-flex justify-content-between">
                     <span v-if="events.spotsLeft > 0" class="d-flex text-light">
                         <h5 class="me-2">Spots Left:</h5>
@@ -77,7 +79,8 @@ export default {
     
     setup() {
         const newComment = ref({})
-        let eventIdVal = computed(()=> AppState.activeEvent)
+        let eventIdVal = computed(()=> AppState.activeEvent?.startDate)
+        const timeStamp = ref('')
         
         onMounted(() => {
             findEventId()
