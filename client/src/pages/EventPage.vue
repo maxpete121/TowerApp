@@ -44,10 +44,20 @@
         </div>
     </section>
     <section class="container-fluid bg-black">
-        <div class="row pt-4">
-            <div class="col-7 bg-white">
-                <h4>Comments</h4>
-
+        <div class="row justify-content-center pt-4">
+            <div class="col-7 bg-white d-flex flex-column align-items-center p-2 rounded-2">
+                <h4>Leave a comment</h4>
+                <form @submit.prevent="postComment()" class="w-50 text-center" action="">
+                    <textarea v-model="newComment.body" class="form-control" id="" cols="30" rows="4"></textarea>
+                    <button class="btn btn-outline-dark mt-1">Post</button>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <div class="col-6 bg-white rounded-2">
+                <div class="mt-3 p-2" v-for="comment in comments">
+                    <CommentCard :comment="comment"/>
+                </div> 
             </div>
         </div>
     </section>
@@ -61,9 +71,12 @@ import { useRoute } from 'vue-router';
 import {ticketService} from '../services/TicketService.js'
 import { Ticket } from '../models/Ticket';
 import TicketComp from '../components/TicketComp.vue';
+import {commentService} from '../services/CommentService.js';
+import CommentCard from '../components/CommentCard.vue';
 export default {
     
     setup() {
+        const newComment = ref({})
         let eventIdVal = computed(()=> AppState.activeEvent)
         onMounted(() => {
             findEventId()
@@ -73,6 +86,7 @@ export default {
             let eventId = route.params.eventId
             await eventService.findEventId(eventId)
             await getEventTickets(eventId)
+            getComments()
         }
 
         async function getEventTickets(){
@@ -90,14 +104,29 @@ export default {
         async function cancelEvent(eventId){
             await eventService.cancelEvent(eventId)
         }
+
+        async function getComments(){
+            let eventId = route.params.eventId
+            await commentService.getComments(eventId)
+        }
+
+        async function postComment(){
+            let eventId = route.params.eventId
+            newComment.value.eventId = eventId
+            console.log(newComment.value)
+            await commentService.postComment(newComment.value)
+        }
         return {
             events: computed(() => AppState.activeEvent),
             tickets: computed(()=> AppState.tickets),
             account: computed(()=> AppState.account),
+            comments: computed(()=> AppState.comments),
+            newComment,
             postTicket,
-            cancelEvent
+            cancelEvent,
+            postComment
         }
-    }, components: {TicketComp}
+    }, components: {TicketComp, CommentCard}
 }
 </script>
   

@@ -36,6 +36,9 @@ export default {
   setup() {
     onMounted(()=>{
       getEvents()
+      AppState.comments = []
+      AppState.tickets = []
+      AppState.activeEvent = []
     })
     async function getEvents(){
       await eventService.getEvents()
