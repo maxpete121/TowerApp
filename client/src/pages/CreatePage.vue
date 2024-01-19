@@ -64,10 +64,10 @@ import {eventService} from '../services/EventService.js'
 import { router } from '../router';
   export default {
       setup() {
-        const newEvent = ref({})
+        const newEvent = ref({capacity: 1})
         async function postEvent(){
             const event = await eventService.postEvent(newEvent.value)
-            newEvent.value = {}
+            newEvent.value = {capacity: 1}
             router.push({name: 'Event', params:{eventId: event.id}})
         }
       return {

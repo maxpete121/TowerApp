@@ -4,7 +4,8 @@
       <div class="col-10 heading p-2 align-items-center justify-content-center justify-content-lg-start d-flex">
         <div class="heading-child w-50 p-2">
           <h5 class="ms-2">Find an event for you!</h5>
-          <h5 class="ms-2">Save events for later!</h5>
+          <h5 class="ms-2">Get tickets fast and easy!</h5>
+          <h5 class="ms-2">Endless opportunities for fun and learning!</h5>
         </div>
       </div>
     </section>
