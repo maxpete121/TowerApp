@@ -8,7 +8,7 @@ class EventService{
 
     async postEvent(eventData){
         let newEvent = await dbContext.Events.create(eventData)
-        await newEvent.populate('creator ticket')
+        await newEvent.populate('creator')
         return newEvent
     }
     async getEvents(){
