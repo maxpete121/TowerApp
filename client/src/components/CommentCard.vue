@@ -3,7 +3,7 @@
         <span class="d-flex align-items-center">
             <img class="rounded-circle profile-pic me-2" :src="comment.creator.picture" alt="">
             <h6>{{ comment.creator.name }}</h6>
-            <button v-if="account.id == comment.creator.id" class="ms-2 btn btn-outline-dark"><i class="mdi mdi-delete"></i></button>
+            <button @click="deleteComment(comment.id)" v-if="account.id == comment.creator.id" class="ms-2 btn btn-outline-dark"><i class="mdi mdi-delete"></i></button>
         </span>
         <div class="m-1 comment-body pt-1 ps-2">
             <p>{{ comment.body }}</p>
@@ -15,12 +15,17 @@
   import { computed } from 'vue'
   import { AppState } from '../AppState'
   import { AuthService } from '../services/AuthService'
-import { Comment } from '../models/Comment'
+import { Comment } from '../models/Comment';
+import { commentService } from '../services/CommentService';
   export default {
     props: {comment: {type: Comment, required: true}},
     setup() {
+        async function deleteComment(commentId){
+            await commentService.deleteComment(commentId)
+        }
       return {
-        account: computed(()=> AppState.account)
+        account: computed(()=> AppState.account),
+        deleteComment
       }
     }
   }

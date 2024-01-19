@@ -4,13 +4,16 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
   </div>
+  <div class="row"></div>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState';
+import { ticketService } from '../services/TicketService';
 export default {
   setup() {
+
     return {
       account: computed(() => AppState.account)
     }

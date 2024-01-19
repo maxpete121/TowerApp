@@ -17,6 +17,12 @@ class CommentService{
         let newComment = new Comment(response.data)
         AppState.comments.unshift(newComment)
     }
+
+    async deleteComment(commentId){
+        let response = await api.delete(`api/comments/${commentId}`)
+        let commentIndex = AppState.comments.findIndex(comment => comment.id == commentId)
+        AppState.comments.splice(commentIndex, 1)
+    }
 }
 
 export const commentService = new CommentService()

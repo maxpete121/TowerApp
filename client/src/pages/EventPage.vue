@@ -113,9 +113,10 @@ export default {
         async function postComment(){
             let eventId = route.params.eventId
             newComment.value.eventId = eventId
-            console.log(newComment.value)
             await commentService.postComment(newComment.value)
+            newComment.value = {}
         }
+
         return {
             events: computed(() => AppState.activeEvent),
             tickets: computed(()=> AppState.tickets),
